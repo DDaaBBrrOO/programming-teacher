@@ -36,10 +36,10 @@ export const stages: Stage[] = [
       "Обсудите идею с друзьями — если они не понимают за 30 секунд, упростите",
     ],
     tools: [
-      { name: "Google Docs", url: "https://docs.google.com" },
+      { name: "Яндекс.Документы", url: "https://doc.yandex.ru" },
       { name: "Notion", url: "https://www.notion.so" },
       { name: "Miro", url: "https://miro.com" },
-      { name: "Google Trends", url: "https://trends.google.com" },
+      { name: "Wordstat (Яндекс)", url: "https://wordstat.yandex.ru" },
     ],
     commonMistakes: [
       "Слишком широкий охват — пытаешься сделать всё сразу",
@@ -70,7 +70,7 @@ export const stages: Stage[] = [
       { name: "Trello", url: "https://trello.com" },
       { name: "Jira", url: "https://www.atlassian.com/software/jira" },
       { name: "Figma", url: "https://www.figma.com" },
-      { name: "Google Sheets", url: "https://sheets.google.com" },
+      { name: "Яндекс.Таблицы", url: "https://tables.yandex.ru" },
     ],
     commonMistakes: [
       "Не записывать требования — держать всё в голове",
@@ -133,6 +133,7 @@ export const stages: Stage[] = [
     tools: [
       { name: "StackShare", url: "https://stackshare.io" },
       { name: "GitHub", url: "https://github.com" },
+      { name: "GitLab", url: "https://gitlab.com" },
       { name: "VS Code", url: "https://code.visualstudio.com" },
     ],
     commonMistakes: [
@@ -235,11 +236,11 @@ export const stages: Stage[] = [
       "Сохраните все пароли и ключи в безопасном месте",
     ],
     tools: [
+      { name: "Timeweb Cloud", url: "https://timeweb.cloud" },
+      { name: "Beget", url: "https://beget.com" },
+      { name: "Yandex Cloud", url: "https://cloud.yandex.ru" },
+      { name: "Selectel", url: "https://selectel.ru" },
       { name: "Vercel", url: "https://vercel.com" },
-      { name: "Netlify", url: "https://www.netlify.com" },
-      { name: "Railway", url: "https://railway.app" },
-      { name: "Render", url: "https://render.com" },
-      { name: "Cloudflare", url: "https://www.cloudflare.com" },
     ],
     commonMistakes: [
       "Хранить секретные ключи в коде",
@@ -299,8 +300,8 @@ export const stages: Stage[] = [
       "Используйте NPS (Net Promoter Score) для оценки удовлетворённости",
     ],
     tools: [
-      { name: "Google Forms", url: "https://docs.google.com/forms" },
-      { name: "Hotjar", url: "https://www.hotjar.com" },
+      { name: "Яндекс.Формы", url: "https://forms.yandex.ru" },
+      { name: "Яндекс.Метрика", url: "https://metrika.yandex.ru" },
       { name: "Sentry", url: "https://sentry.io" },
     ],
     commonMistakes: [

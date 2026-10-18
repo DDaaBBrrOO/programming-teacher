@@ -325,17 +325,33 @@ npm run lint         # Проверка кода ESLint
 
 ## 🌐 Деплой
 
-### Vercel (рекомендуется)
+> ⚠️ **Примечание для пользователей из России:** Некоторые международные сервисы (Google Docs, Vercel, Netlify, Hotjar) могут быть недоступны или работать нестабильно. В приложении указаны как международные, так и российские альтернативы (Яндекс.Документы, Timeweb, Beget, Яндекс.Метрика и др.)
+
+### Российские хостинги (рекомендуется для РФ)
+
+```bash
+# Timeweb Cloud — https://timeweb.cloud
+# Beget — https://beget.com
+# Yandex Cloud — https://cloud.yandex.ru
+# Selectel — https://selectel.ru
+
+# Собрать проект
+npm run build
+
+# Загрузить папку dist/ на выбранный хостинг
+```
+
+### Vercel (международный)
 
 ```bash
 # Установить Vercel CLI
 npm i -g vercel
 
-# Деплой
+# Деплой (может требовать VPN в России)
 vercel
 ```
 
-### Netlify
+### Netlify (международный)
 
 ```bash
 # Собрать проект
@@ -343,6 +359,7 @@ npm run build
 
 # Загрузить папку dist/ в Netlify
 # Или подключить Git репозиторий
+# (может требовать VPN в России)
 ```
 
 ### GitHub Pages
