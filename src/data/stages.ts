@@ -1,3 +1,8 @@
+export interface Tool {
+  name: string;
+  url: string;
+}
+
 export interface Stage {
   id: string;
   number: number;
@@ -6,7 +11,7 @@ export interface Stage {
   description: string;
   details: string[];
   tips: string[];
-  tools: string[];
+  tools: Tool[];
   commonMistakes: string[];
 }
 
@@ -30,7 +35,12 @@ export const stages: Stage[] = [
       "Запишите идею в виде одного предложения: 'Моё приложение помогает [кому?] [что делать?] с помощью [чего?]'",
       "Обсудите идею с друзьями — если они не понимают за 30 секунд, упростите",
     ],
-    tools: ["Google Docs / Notion для заметок", "Miro для ментальных карт", "Google Trends для анализа"],
+    tools: [
+      { name: "Google Docs", url: "https://docs.google.com" },
+      { name: "Notion", url: "https://www.notion.so" },
+      { name: "Miro", url: "https://miro.com" },
+      { name: "Google Trends", url: "https://trends.google.com" },
+    ],
     commonMistakes: [
       "Слишком широкий охват — пытаешься сделать всё сразу",
       "Нет чёткого понимания, для кого приложение",
@@ -56,7 +66,12 @@ export const stages: Stage[] = [
       "Пишите требования так, чтобы их понял даже не-программист",
       "Для каждого требования задайте вопрос: 'А что если этого не будет?'",
     ],
-    tools: ["Trello / Jira для управления задачами", "Figma для прототипов", "Excel для матрицы приоритетов"],
+    tools: [
+      { name: "Trello", url: "https://trello.com" },
+      { name: "Jira", url: "https://www.atlassian.com/software/jira" },
+      { name: "Figma", url: "https://www.figma.com" },
+      { name: "Google Sheets", url: "https://sheets.google.com" },
+    ],
     commonMistakes: [
       "Не записывать требования — держать всё в голове",
       "Не расставлять приоритеты — всё кажется одинаково важным",
@@ -84,7 +99,11 @@ export const stages: Stage[] = [
       "Изучите 5-10 приложений в вашей нише для вдохновения",
       "Используйте готовые UI-библиотеки — не изобретайте велосипед",
     ],
-    tools: ["Figma (бесплатный тариф)", "Pen & Paper для быстрых скетчей", "draw.io для схем архитектуры"],
+    tools: [
+      { name: "Figma", url: "https://www.figma.com" },
+      { name: "Pen & Paper", url: "#" },
+      { name: "draw.io", url: "https://app.diagrams.net" },
+    ],
     commonMistakes: [
       "Пропуск этого этапа — сразу переход к коду",
       "Слишком сложный дизайн для первого проекта",
@@ -111,7 +130,11 @@ export const stages: Stage[] = [
       "Не бойтесь использовать готовые решения — Firebase, Supabase",
       "Читайте документацию перед выбором — убедитесь, что она понятна",
     ],
-    tools: ["StackShare для сравнения стеков", "GitHub для контроля версий", "VS Code как редактор"],
+    tools: [
+      { name: "StackShare", url: "https://stackshare.io" },
+      { name: "GitHub", url: "https://github.com" },
+      { name: "VS Code", url: "https://code.visualstudio.com" },
+    ],
     commonMistakes: [
       "Выбор технологии потому что 'модно', а не потому что подходит",
       "Слишком сложный стек для уровня знаний",
@@ -140,7 +163,15 @@ export const stages: Stage[] = [
       "Пишите код так, чтобы его понял ваш коллега через месяц",
       "Не бойтесь переписывать — первый вариант редко бывает идеальным",
     ],
-    tools: ["VS Code / WebStorm", "Git + GitHub/GitLab", "Chrome DevTools для отладки", "npm/yarn для пакетов"],
+    tools: [
+      { name: "VS Code", url: "https://code.visualstudio.com" },
+      { name: "WebStorm", url: "https://www.jetbrains.com/webstorm/" },
+      { name: "Git", url: "https://git-scm.com" },
+      { name: "GitHub", url: "https://github.com" },
+      { name: "GitLab", url: "https://gitlab.com" },
+      { name: "Chrome DevTools", url: "https://developer.chrome.com/docs/devtools" },
+      { name: "npm", url: "https://www.npmjs.com" },
+    ],
     commonMistakes: [
       "Не использовать систему контроля версий",
       "Писать весь код в одном файле",
@@ -169,7 +200,12 @@ export const stages: Stage[] = [
       "Запишите видео с экраном, когда тестируете — поможет найти баги",
       "Давайте тестировать людям, которые не знают ваш проект",
     ],
-    tools: ["Chrome DevTools", "Lighthouse для производительности", "Jest для unit-тестов", "Cypress для E2E тестов"],
+    tools: [
+      { name: "Chrome DevTools", url: "https://developer.chrome.com/docs/devtools" },
+      { name: "Lighthouse", url: "https://developer.chrome.com/docs/lighthouse" },
+      { name: "Jest", url: "https://jestjs.io" },
+      { name: "Cypress", url: "https://www.cypress.io" },
+    ],
     commonMistakes: [
       "Тестировать только 'счастливый путь' (когда всё идёт правильно)",
       "Не проверять на мобильных устройствах",
@@ -198,7 +234,13 @@ export const stages: Stage[] = [
       "Настройте мониторинг ошибок (Sentry)",
       "Сохраните все пароли и ключи в безопасном месте",
     ],
-    tools: ["Vercel / Netlify для фронтенда", "Railway / Render для бэкенда", "Cloudflare для DNS"],
+    tools: [
+      { name: "Vercel", url: "https://vercel.com" },
+      { name: "Netlify", url: "https://www.netlify.com" },
+      { name: "Railway", url: "https://railway.app" },
+      { name: "Render", url: "https://render.com" },
+      { name: "Cloudflare", url: "https://www.cloudflare.com" },
+    ],
     commonMistakes: [
       "Хранить секретные ключи в коде",
       "Не настраивать HTTPS",
@@ -225,7 +267,11 @@ export const stages: Stage[] = [
       "Добавьте бейджи (build status, version, license)",
       "Пишите документацию по ходу разработки, а не в конце",
     ],
-    tools: ["Markdown для написания", "GitHub Wiki", "Swagger для API документации"],
+    tools: [
+      { name: "Markdown Guide", url: "https://www.markdownguide.org" },
+      { name: "GitHub Wiki", url: "https://docs.github.com/en/communities/documenting-your-project-with-wikis" },
+      { name: "Swagger", url: "https://swagger.io" },
+    ],
     commonMistakes: [
       "Пустой или минимальный README",
       "Документация, которая не соответствует текущей версии кода",
@@ -252,7 +298,11 @@ export const stages: Stage[] = [
       "Отвечайте на отзывы — это мотивирует людей помогать",
       "Используйте NPS (Net Promoter Score) для оценки удовлетворённости",
     ],
-    tools: ["Google Forms для опросов", "Hotjar для аналитики поведения", "Sentry для отслеживания ошибок"],
+    tools: [
+      { name: "Google Forms", url: "https://docs.google.com/forms" },
+      { name: "Hotjar", url: "https://www.hotjar.com" },
+      { name: "Sentry", url: "https://sentry.io" },
+    ],
     commonMistakes: [
       "Игнорирование обратной связи",
       "Внедрение всех пожеланий без анализа",
@@ -279,7 +329,11 @@ export const stages: Stage[] = [
       "Не бойтесь удалять ненужные функции",
       "Учитесь на каждом проекте — записывайте, что делать иначе в следующий раз",
     ],
-    tools: ["GitHub Projects для планирования", "Semantic Versioning (SemVer) для версий", "Dependabot для обновлений"],
+    tools: [
+      { name: "GitHub Projects", url: "https://docs.github.com/en/issues/planning-and-tracking-with-projects" },
+      { name: "SemVer", url: "https://semver.org" },
+      { name: "Dependabot", url: "https://docs.github.com/en/code-security/dependabot" },
+    ],
     commonMistakes: [
       "Бросать проект после первого релиза",
       "Добавлять функции без приоритизации",

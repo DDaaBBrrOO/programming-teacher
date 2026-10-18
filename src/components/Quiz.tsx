@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { quizQuestions } from "../data/quiz";
+import { SmartText } from "./TermTooltip";
 
 type Difficulty = "all" | "easy" | "medium" | "hard";
 
@@ -213,7 +214,7 @@ export default function Quiz() {
           <DifficultyBadge difficulty={currentQ.difficulty} />
           <span className="text-xs text-slate-500">{currentQ.category}</span>
         </div>
-        <h2 className="text-xl font-bold mb-6">{currentQ.question}</h2>
+        <h2 className="text-xl font-bold mb-6"><SmartText text={currentQ.question} /></h2>
 
         <div className="space-y-3">
           {currentQ.options.map((option, index) => {
@@ -249,7 +250,7 @@ export default function Quiz() {
                   >
                     {String.fromCharCode(65 + index)}
                   </span>
-                  <span className="text-sm md:text-base">{option}</span>
+                  <span className="text-sm md:text-base"><SmartText text={option} /></span>
                   {showCorrect && <span className="ml-auto">✅</span>}
                   {showWrong && <span className="ml-auto">❌</span>}
                 </div>
@@ -263,7 +264,7 @@ export default function Quiz() {
       {state.showExplanation && (
         <div className="p-5 rounded-xl bg-indigo-500/5 border border-indigo-500/20 mb-6">
           <h4 className="font-semibold text-indigo-300 mb-2">💡 Объяснение:</h4>
-          <p className="text-sm text-slate-300">{currentQ.explanation}</p>
+          <p className="text-sm text-slate-300"><SmartText text={currentQ.explanation} /></p>
         </div>
       )}
 

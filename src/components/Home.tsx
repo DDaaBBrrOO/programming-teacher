@@ -1,4 +1,5 @@
 import { type Page } from "../App";
+import { SmartText } from "./TermTooltip";
 
 interface HomeProps {
   onNavigate: (page: Page) => void;

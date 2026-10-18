@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { configSteps, getRecommendations, type Recommendation } from "../data/configurator";
+import { SmartText } from "./TermTooltip";
 
 export default function Configurator() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -211,7 +212,7 @@ function RecommendationCard({ recommendation, index }: { recommendation: Recomme
               {typeLabels[recommendation.type]}
             </span>
           </div>
-          <p className="text-sm text-slate-300">{recommendation.description}</p>
+          <p className="text-sm text-slate-300"><SmartText text={recommendation.description} /></p>
         </div>
       </div>
     </div>

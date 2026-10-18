@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { stages, type Stage } from "../data/stages";
+import { stages } from "../data/stages";
+import { SmartText } from "./TermTooltip";
 
 export default function Stages() {
   const [expandedStage, setExpandedStage] = useState<string | null>(null);
@@ -17,7 +18,10 @@ export default function Stages() {
         <h1 className="text-4xl font-bold mb-4">📋 Этапы разработки</h1>
         <p className="text-slate-300 text-lg max-w-2xl mx-auto">
           Полный путь создания приложения — от идеи до развития продукта.
-          Нажмите на этап, чтобы узнать подробности.
+          Нажмите на этап, чтобы узнать подробности.{" "}
+          <span className="text-indigo-300 text-sm">
+            (Наведите на <span className="border-b border-dashed border-indigo-400/50">подчёркнутые слова</span> для расшифровки терминов)
+          </span>
         </p>
       </div>
 
@@ -73,17 +77,29 @@ export default function Stages() {
       <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
         <h3 className="text-xl font-bold mb-3">💡 Итого</h3>
         <p className="text-slate-300">
-          Из {stages.length} этапов <strong className="text-emerald-400">{stages.filter(s => s.required).length} обязательных</strong> и{" "}
-          <strong className="text-amber-400">{stages.filter(s => !s.required).length} опциональных</strong>.
-          Для первого проекта рекомендуется пройти все обязательные этапы. Опциональные этапы (документация, сбор обратной связи, итерации) 
-          важны для долгосрочных проектов и продуктов.
+          Из {stages.length} этапов{" "}
+          <strong className="text-emerald-400">
+            {stages.filter((s) => s.required).length} обязательных
+          </strong>{" "}
+          и{" "}
+          <strong className="text-amber-400">
+            {stages.filter((s) => !s.required).length} опциональных
+          </strong>
+          . Для первого проекта рекомендуется пройти все обязательные этапы.
+          Опциональные этапы (документация, сбор обратной связи, итерации) важны
+          для долгосрочных проектов и продуктов.
         </p>
       </div>
     </div>
   );
 }
 
-function FilterButton({ active, onClick, label, count }: {
+function FilterButton({
+  active,
+  onClick,
+  label,
+  count,
+}: {
   active: boolean;
   onClick: () => void;
   label: string;
@@ -103,8 +119,12 @@ function FilterButton({ active, onClick, label, count }: {
   );
 }
 
-function StageCard({ stage, isExpanded, onToggle }: {
-  stage: Stage;
+function StageCard({
+  stage,
+  isExpanded,
+  onToggle,
+}: {
+  stage: (typeof stages)[0];
   isExpanded: boolean;
   onToggle: () => void;
 }) {
@@ -157,15 +177,24 @@ function StageCard({ stage, isExpanded, onToggle }: {
 
       {isExpanded && (
         <div className="px-5 pb-5 space-y-5 border-t border-white/5 pt-5">
-          <p className="text-slate-300">{stage.description}</p>
+          <p className="text-slate-300 leading-relaxed">
+            <SmartText text={stage.description} />
+          </p>
 
           <div>
-            <h4 className="font-semibold text-indigo-300 mb-2">📝 Что нужно сделать:</h4>
+            <h4 className="font-semibold text-indigo-300 mb-2">
+              📝 Что нужно сделать:
+            </h4>
             <ul className="space-y-1.5">
               {stage.details.map((detail, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-slate-300"
+                >
                   <span className="text-indigo-400 mt-0.5">•</span>
-                  {detail}
+                  <span className="leading-relaxed">
+                    <SmartText text={detail} />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -175,35 +204,66 @@ function StageCard({ stage, isExpanded, onToggle }: {
             <h4 className="font-semibold text-emerald-300 mb-2">💡 Советы:</h4>
             <ul className="space-y-1.5">
               {stage.tips.map((tip, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-slate-300"
+                >
                   <span className="text-emerald-400 mt-0.5">→</span>
-                  {tip}
+                  <span className="leading-relaxed">
+                    <SmartText text={tip} />
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-purple-300 mb-2">🛠 Рекомендуемые инструменты:</h4>
+            <h4 className="font-semibold text-purple-300 mb-2">
+              🛠 Рекомендуемые инструменты:
+            </h4>
             <div className="flex flex-wrap gap-2">
               {stage.tools.map((tool, i) => (
-                <span
+                <a
                   key={i}
-                  className="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20"
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/40 hover:text-purple-200 transition-all hover:scale-105"
                 >
-                  {tool}
-                </span>
+                  <span>🔗</span>
+                  {tool.name}
+                  <svg
+                    className="w-3 h-3 opacity-50"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold text-red-300 mb-2">⚠️ Частые ошибки:</h4>
+            <h4 className="font-semibold text-red-300 mb-2">
+              ⚠️ Частые ошибки:
+            </h4>
             <ul className="space-y-1.5">
               {stage.commonMistakes.map((mistake, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-slate-300"
+                >
                   <span className="text-red-400 mt-0.5">✗</span>
-                  {mistake}
+                  <span className="leading-relaxed">
+                    <SmartText text={mistake} />
+                  </span>
                 </li>
               ))}
             </ul>
