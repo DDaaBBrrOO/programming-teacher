@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Stages from "./components/Stages";
 import Glossary from "./components/Glossary";
@@ -11,10 +11,19 @@ export type Page = "home" | "stages" | "glossary" | "quiz" | "configurator";
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
 
+  // Прокрутка наверх при смене страницы
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  const handleNavigate = (page: Page) => {
+    setCurrentPage(page);
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case "home":
-        return <Home onNavigate={setCurrentPage} />;
+        return <Home onNavigate={handleNavigate} />;
       case "stages":
         return <Stages />;
       case "glossary":
@@ -24,13 +33,13 @@ function App() {
       case "configurator":
         return <Configurator />;
       default:
-        return <Home onNavigate={setCurrentPage} />;
+        return <Home onNavigate={handleNavigate} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-white">
-      <Header currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Header currentPage={currentPage} onNavigate={handleNavigate} />
       <main className="pt-16">
         {renderPage()}
       </main>

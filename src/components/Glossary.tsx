@@ -7,9 +7,12 @@ export default function Glossary() {
   const [expandedTerm, setExpandedTerm] = useState<string | null>(null);
 
   const filteredTerms = glossaryTerms.filter((term) => {
+    const searchLower = search.toLowerCase();
     const matchesSearch =
-      term.term.toLowerCase().includes(search.toLowerCase()) ||
-      term.definition.toLowerCase().includes(search.toLowerCase());
+      term.term.toLowerCase().includes(searchLower) ||
+      term.shortDefinition.toLowerCase().includes(searchLower) ||
+      term.definition.toLowerCase().includes(searchLower) ||
+      term.example.toLowerCase().includes(searchLower);
     const matchesCategory =
       selectedCategory === "all" || term.category === selectedCategory;
     return matchesSearch && matchesCategory;

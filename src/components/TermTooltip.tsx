@@ -69,7 +69,7 @@ export default function TermTooltip({ term, children }: TermTooltipProps) {
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`absolute z-50 w-64 sm:w-72 md:w-80 p-4 rounded-xl bg-slate-800/95 backdrop-blur-sm border border-indigo-500/30 shadow-2xl shadow-indigo-500/10 animate-fade-in ${
+          className={`absolute z-50 w-64 sm:w-72 md:w-80 p-4 rounded-xl bg-slate-800/95 backdrop-blur-sm border border-indigo-500/30 shadow-2xl shadow-indigo-500/10 ${
             position === "top"
               ? "bottom-full mb-2"
               : "top-full mt-2"

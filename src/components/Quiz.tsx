@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { quizQuestions, quizUnits, type QuizQuestion } from "../data/quiz";
-import { SmartText } from "./TermTooltip";
 
 interface UserProgress {
   xp: number;
@@ -258,7 +257,7 @@ export default function Quiz() {
             )}
           </div>
           <h2 className="text-xl font-bold mb-6">
-            <SmartText text={currentQ.question} />
+            {currentQ.question}
           </h2>
 
           <div className="space-y-3">
@@ -296,7 +295,7 @@ export default function Quiz() {
                       {showCorrect ? "✓" : showWrong ? "✗" : String.fromCharCode(65 + index)}
                     </span>
                     <span className="text-sm md:text-base">
-                      <SmartText text={option} />
+                      {option}
                     </span>
                   </div>
                 </button>
@@ -326,7 +325,7 @@ export default function Quiz() {
               )}
             </div>
             <p className="text-sm text-slate-300">
-              <SmartText text={currentQ.explanation} />
+              {currentQ.explanation}
             </p>
           </div>
         )}
@@ -434,7 +433,7 @@ export default function Quiz() {
                   {isCompleted ? "✓" : i + 1}
                 </span>
                 <span className="text-sm flex-1">
-                  <SmartText text={q.question} />
+                  {q.question}
                 </span>
                 <DifficultyBadge difficulty={q.difficulty} />
               </div>
