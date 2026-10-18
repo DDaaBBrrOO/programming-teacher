@@ -87,7 +87,7 @@ export default function Glossary() {
                   </span>
                 </div>
                 <p className="text-sm text-slate-400 mt-1 line-clamp-1">
-                  {term.definition}
+                  {term.shortDefinition}
                 </p>
               </div>
               <div
@@ -103,10 +103,16 @@ export default function Glossary() {
               <div className="px-4 pb-4 pt-0 border-t border-white/5 mt-0">
                 <div className="pl-5 space-y-3 pt-3">
                   <div>
-                    <h4 className="text-sm font-semibold text-indigo-300 mb-1">
-                      Определение:
+                    <h4 className="text-sm font-semibold text-slate-400 mb-1">
+                      Кратко:
                     </h4>
-                    <p className="text-sm text-slate-300">{term.definition}</p>
+                    <p className="text-sm text-slate-300">{term.shortDefinition}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-indigo-300 mb-1">
+                      Подробное определение:
+                    </h4>
+                    <p className="text-sm text-slate-300 leading-relaxed">{term.definition}</p>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-emerald-300 mb-1">
