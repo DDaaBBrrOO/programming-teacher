@@ -27,6 +27,9 @@ export default function TermTooltip({ term, children }: TermTooltipProps) {
       term.toLowerCase().includes(t.term.toLowerCase().split(" ")[0].toLowerCase())
   );
 
+  // Краткое определение для тултипа
+  const tooltipDefinition = glossaryEntry?.shortDefinition || glossaryEntry?.definition || "";
+
   // Определяем позицию тултипа (сверху или снизу)
   useEffect(() => {
     if (isVisible && triggerRef.current) {
@@ -98,7 +101,7 @@ export default function TermTooltip({ term, children }: TermTooltipProps) {
               {glossaryEntry.term}
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed mb-2">
-              {glossaryEntry.definition}
+              {tooltipDefinition}
             </p>
             <div className="pt-2 border-t border-white/5">
               <p className="text-xs text-emerald-300/80">
