@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { stages } from "../data/stages";
 import { SmartText } from "./TermTooltip";
 
 export default function Stages() {
   const [expandedStage, setExpandedStage] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "required" | "optional">("all");
+  const stageRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filteredStages = stages.filter((s) => {
     if (filter === "required") return s.required;
     if (filter === "optional") return !s.required;
     return true;
   });
+
+  const handleToggle = (stageId: string) => {
+    const isExpanding = expandedStage !== stageId;
+    setExpandedStage(isExpanding ? stageId : null);
+    
+    // Прокрутка к началу блока при раскрытии
+    if (isExpanding && stageRefs.current[stageId]) {
+      setTimeout(() => {
+        stageRefs.current[stageId]?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
@@ -62,14 +78,17 @@ export default function Stages() {
       {/* Stages */}
       <div className="space-y-4">
         {filteredStages.map((stage) => (
-          <StageCard
+          <div
             key={stage.id}
-            stage={stage}
-            isExpanded={expandedStage === stage.id}
-            onToggle={() =>
-              setExpandedStage(expandedStage === stage.id ? null : stage.id)
-            }
-          />
+            ref={(el) => { stageRefs.current[stage.id] = el; }}
+            className="scroll-mt-20"
+          >
+            <StageCard
+              stage={stage}
+              isExpanded={expandedStage === stage.id}
+              onToggle={() => handleToggle(stage.id)}
+            />
+          </div>
         ))}
       </div>
 
